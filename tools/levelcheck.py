@@ -11,7 +11,7 @@ MAX_CODE_CHARS = 60000        # лимит тела GitHub Issue ~65k
 MAX_JSON_BYTES = 400_000      # защита от zip-бомб
 MAX_OBJECTS = 1500
 MAX_LEVELS = 500              # сколько уровней держим в index.json
-TEXT_BAD = re.compile(r"[^A-Z0-9 .,:!?*\-_/<>\[\]%()'+=|#]")
+TEXT_BAD = re.compile(r"[^A-ZА-Я0-9 .,:!?*\-_/<>\[\]%()'+=|#]")
 ID_BAD = re.compile(r"[^A-Za-z0-9_-]")
 THUMB_RE = re.compile(r"^data:image/png;base64,[A-Za-z0-9+/=]{1,16000}$")
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
