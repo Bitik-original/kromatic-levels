@@ -1,0 +1,51 @@
+name: Publish approved level
+
+# Срабатывает, только когда мейнтейнер (с правом triage+) вешает на Issue метку "approved".
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: levels-catalog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Add level to catalog
+        id: add
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python tools/publish_level.py 2> error.txt
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add levels
+          git commit -m "Publish level from issue #${{ github.event.issue.number }}"
+          git push
+      - name: Close issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "Published. It will appear in the game within a few minutes." 
+          gh issue close ${{ github.event.issue.number }}
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          MSG="$(cat error.txt 2>/dev/null || echo 'unknown error')"
+          gh issue comment ${{ github.event.issue.number }} --body "Could not publish: $MSG"
+          gh issue edit ${{ github.event.issue.number }} --remove-label approved

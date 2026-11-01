@@ -1,0 +1,37 @@
+name: Publish a level
+description: Submit a KROMATIC level to the community catalog (it appears after review).
+title: "Level: "
+labels: ["level-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Levels are reviewed by a human before they appear in the game. **This issue is public and stays public**
+        (nickname, level name and level data). Do **not** put your real name, contacts or any personal data here.
+  - type: input
+    id: nickname
+    attributes:
+      label: Nickname
+      description: Shown in the game next to the level. Latin letters/digits, up to 16 characters. Not your real name.
+      placeholder: ANON
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Level code
+      description: In the editor choose LEVEL MENU > PUBLISH LEVEL > COPY CODE, then paste it here (starts with KRM1: or KRM0:).
+      placeholder: "KRM1:H4sIAAAA..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I made this level myself (or have the right to publish it) and it contains no third-party copyrighted material.
+          required: true
+        - label: The level and my nickname contain no offensive, illegal or personal content.
+          required: true
+        - label: I publish the level under CC0 1.0 (public domain dedication) and understand it will be public and may be copied; deleting this issue does not remove copies.
+          required: true

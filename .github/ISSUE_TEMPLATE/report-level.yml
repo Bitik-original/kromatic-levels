@@ -1,0 +1,30 @@
+name: Report a level
+description: Report a level (offensive, illegal, copyright, personal data...) so it can be removed.
+title: "Report level "
+labels: ["report"]
+body:
+  - type: input
+    id: level_id
+    attributes:
+      label: Level ID
+      description: Shown automatically when you press REPORT in the game (for example c12).
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason
+      options:
+        - Offensive or hateful content
+        - Illegal content
+        - Copyright infringement
+        - Personal data
+        - Spam / broken level
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Please do not include personal data of third parties.
