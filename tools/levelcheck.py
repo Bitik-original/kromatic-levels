@@ -81,6 +81,10 @@ def clean_level(raw) -> dict:
             c["inv"] = 1
         if o.get("all"):
             c["all"] = 1
+        if o.get("r"):
+            c["r"] = num(o["r"], 0, 3, 0)
+        if o.get("fx"):
+            c["fx"] = 1
         if "dx" in o:
             c["dx"] = num(o["dx"], -20000, 20000, 0)
         if "dy" in o:
