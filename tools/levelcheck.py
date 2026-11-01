@@ -109,6 +109,7 @@ def clean_level(raw) -> dict:
 def parse_issue_form(body: str) -> dict:
     """Разбор тела GitHub Issue Form: '### Заголовок\\n\\nзначение'."""
     fields = {}
+    body = (body or "").replace("\r\n", "\n").replace("\r", "\n")   # с сайта GitHub тело приходит с CRLF
     for m in re.finditer(r"^### (.+?)\s*\n\n(.*?)(?=\n### |\Z)", body or "", re.S | re.M):
         fields[m.group(1).strip().lower()] = m.group(2).strip()
     return fields
