@@ -20,7 +20,7 @@ body:
     id: code
     attributes:
       label: Level code
-      description: In the editor choose LEVEL MENU > PUBLISH LEVEL > COPY CODE, then paste it here (starts with KRM1: or KRM0:).
+      description: "In the editor choose LEVEL MENU > PUBLISH LEVEL > COPY CODE, then paste it here (the code starts with KRM1 or KRM0)."
       placeholder: "KRM1:H4sIAAAA..."
     validations:
       required: true
