@@ -1,1 +1,0 @@
-{"name":"MY LEVEL","author":"TESTER","objects":[{"id":"p","type":"Player","x":0,"y":0,"w":79,"h":79},{"id":"g","type":"Goal","x":400,"y":0,"w":64,"h":96},{"id":"l","type":"Lever","x":100,"y":10,"w":48,"h":64,"to":["d"]},{"id":"d","type":"Door","x":200,"y":0,"w":32,"h":160,"inv":1},{"id":"e","type":"Elevator","x":250,"y":0,"w":128,"h":24,"dx":0,"dy":-192}]}
